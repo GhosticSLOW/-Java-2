@@ -1,0 +1,137 @@
+public class Main {
+
+    public static void main(String[] args) {
+        // 1. Задать целочисленный массив, состоящий из элементов 0 и 1. Заменить 0 на 1, 1 на 0.
+        int[] array1 = {1, 1, 0, 0, 1, 0, 1, 1, 0, 0};
+        for (int i = 0; i < array1.length; i++) {
+            if (array1[i] == 0) {
+                array1[i] = 1;
+            } else {
+                array1[i] = 0;
+            }
+        }
+        System.out.println("Задание 1:");
+        printArray(array1);
+
+        // 2. Задать пустой целочисленный массив длиной 100 и заполнить его значениями от 1 до 100.
+        int[] array2 = new int[100];
+        for (int i = 0; i < array2.length; i++) {
+            array2[i] = i + 1;
+        }
+        System.out.println("\nЗадание 2:");
+        printArray(array2);
+
+        // 3. Пройти по массиву и умножить числа меньшие 6 на 2.
+        int[] array3 = {1, 5, 3, 2, 11, 4, 5, 2, 4, 8, 9, 1};
+        for (int i = 0; i < array3.length; i++) {
+            if (array3[i] < 6) {
+                array3[i] *= 2;
+            }
+        }
+        System.out.println("\nЗадание 3:");
+        printArray(array3);
+
+        // 4. Создать квадратный двумерный целочисленный массив и заполнить его диагональные элементы единицами.
+        int size = 5; // Размер квадратного массива
+        int[][] array4 = new int[size][size];
+        for (int i = 0; i < size; i++) {
+            array4[i][i] = 1;
+            // Если нужно заполнить обе диагонали, то можно использовать следующую строку:
+            // array4[i][size - 1 - i] = 1;
+        }
+        System.out.println("\nЗадание 4:");
+        printArray(array4);
+
+        // 5. Метод, создающий одномерный массив заданной длины и заполняющий его заданным значением.
+        int[] array5 = createArray(10, 5);
+        System.out.println("\nЗадание 5:");
+        printArray(array5);
+
+        // 6. Найти минимальный и максимальный элементы в массиве.
+        int[] array6 = {7, 3, 15, 2, 9, 11, 6};
+        int min = array6[0];
+        int max = array6[0];
+        for (int i = 1; i < array6.length; i++) {
+            if (array6[i] < min) {
+                min = array6[i];
+            }
+            if (array6[i] > max) {
+                max = array6[i];
+            }
+        }
+        System.out.println("\nЗадание 6:");
+        System.out.println("Минимальный элемент: " + min);
+        System.out.println("Максимальный элемент: " + max);
+
+        // 7. Метод, возвращающий true, если в массиве есть место, в котором сумма левой и правой части массива равны.
+        int[] array7 = {2, 2, 2, 1, 2, 2, 10, 1};
+        System.out.println("\nЗадание 7:");
+        System.out.println("Результат: " + checkBalance(array7));
+
+        // 8. Метод, смещающий все элементы массива на n позиций.
+        int[] array8 = {1, 2, 3};
+        shiftArray(array8, 1); // Сдвиг на одну позицию вправо
+        System.out.println("\nЗадание 8:");
+        printArray(array8);
+
+        int[] array9 = {3, 5, 6, 1};
+        shiftArray(array9, -2); // Сдвиг на две позиции влево
+        System.out.println();
+        printArray(array9);
+    }
+
+    // Метод для вывода одномерного массива на экран
+    public static void printArray(int[] array) {
+        for (int i : array) {
+            System.out.print(i + " ");
+        }
+        System.out.println();
+    }
+
+    // Метод для вывода двумерного массива на экран
+    public static void printArray(int[][] array) {
+        for (int[] row : array) {
+            for (int i : row) {
+                System.out.print(i + " ");
+            }
+            System.out.println();
+        }
+    }
+
+    // 5. Метод, создающий одномерный массив заданной длины и заполняющий его заданным значением.
+    public static int[] createArray(int len, int initialValue) {
+        int[] newArray = new int[len];
+        for (int i = 0; i < len; i++) {
+            newArray[i] = initialValue;
+        }
+        return newArray;
+    }
+
+    // 7. Метод, возвращающий true, если в массиве есть место, в котором сумма левой и правой части массива равны.
+    public static boolean checkBalance(int[] array) {
+        for (int i = 0; i < array.length; i++) {
+            int sumLeft = 0;
+            int sumRight = 0;
+            for (int j = 0; j < i; j++) {
+                sumLeft += array[j];
+            }
+            for (int k = i; k < array.length; k++) {
+                sumRight += array[k];
+            }
+            if (sumLeft == sumRight) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    // 8. Метод, смещающий все элементы массива на n позиций.
+    public static void shiftArray(int[] array, int n) {
+        int len = array.length;
+        n %= len; // Обработка отрицательных и слишком больших значений n
+        if (n < 0) {
+            n += len;
+        }
+        int[] temp = new int[len];
+        for (int i = 0; i < len; i
+
